@@ -1,0 +1,9 @@
+@if (isAddingPicture) {
+  <app-new-picture (cancel)="onCancelAddPicture()" (add)="onAddPicture($event)"/>
+}
+
+<div class="px-8 py-4 w-full h-full flex gap-5">
+  @for (picture of gallerys; track picture.id) {
+  <app-picture [picture]="picture" />
+  }
+</div>
