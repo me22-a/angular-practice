@@ -1,6 +1,6 @@
-import { type NewPictureData } from './../picture/picture.model';
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, inject, Input } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { GalleryService } from '../gallery.service';
 
 @Component({
   selector: 'app-new-picture',
@@ -10,24 +10,27 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './new-picture.component.css',
 })
 export class NewPictureComponent {
-  @Output() cancel = new EventEmitter<void>();
-  @Output() add = new EventEmitter<NewPictureData>();
+  @Input({ required: true}) pictureId!: string;
+  @Output() close = new EventEmitter<void>();
 
   enteredTitle = '';
   enteredDescription = '';
   enteredImageUrl = '';
   enteredDate = '';
 
+  private galleryService = inject(GalleryService)
+
   onCancel() {
-    this.cancel.emit();
+    this.close.emit();
   }
 
   onSummit() {
-    this.add.emit({
+    this.galleryService.addPicture({
       title: this.enteredTitle,
       desc: this.enteredDescription,
       imgurl: this.enteredImageUrl,
       date: this.enteredDate,
-    });
+    }, this.pictureId);
+    this.close.emit();
   }
 }
