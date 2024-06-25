@@ -1,54 +1,37 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { PictureComponent } from './picture/picture.component';
-import { NewPictureData } from './picture/picture.model';
-import { NewPictureComponent } from "./new-picture/new-picture.component";
+import { type NewPictureData, Picture } from './picture/picture.model';
+import { NewPictureComponent } from './new-picture/new-picture.component';
 import { SharedService } from '../shared.service';
-
-
+import { CommonModule } from '@angular/common';
+import { GalleryService } from './gallery.service';
 
 @Component({
   selector: 'app-gallery',
   standalone: true,
   templateUrl: './gallery.component.html',
-  styleUrl: './gallery.component.css',
-  imports: [PictureComponent, NewPictureComponent],
+  styleUrls: ['./gallery.component.css'],
+  imports: [CommonModule, PictureComponent, NewPictureComponent],
 })
-export class GalleryComponent {
+export class GalleryComponent implements OnInit {
   isAddingPicture = false;
+  gallerys: Picture[] = [];
 
-  gallerys = [
-    {
-      id: '1',
-      title: 'Sample Picture',
-      desc: 'This is a sample picture',
-      imgUrl:
-        'https://media-rockstargames-com.akamaized.net/rockstargames-newsite/img/global/games/fob/640/reddeadredemption2.jpg',
-      date: '2023-06-24',
-    },
-  ];
+  ngOnInit() {
+    this.gallerys = this.galleryService.getGallerys();
+  }
 
   onStartAddPicture() {
     this.isAddingPicture = true;
   }
 
-  onCancelAddPicture() {
-    this.isAddingPicture = false;
-  }
-
-  onAddPicture(pictureData: NewPictureData) {
-    this.gallerys.unshift({
-      id: new Date().getTime().toString(),
-      title: pictureData.title,
-      desc: pictureData.desc,
-      imgUrl: pictureData.imgurl,
-      date: pictureData.date,
-    });
+  onCloseAddPicture() {
     this.isAddingPicture = false;
   }
 
   sharedService = inject(SharedService);
 
-  constructor() {
+  constructor(private galleryService: GalleryService) {
     this.sharedService.onCreateButtonClick.subscribe(() => {
       this.onStartAddPicture();
     });
