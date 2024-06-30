@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NewPictureComponent } from '../new-picture/new-picture.component';
-import { type Picture } from './picture.model';
+import type { Picture } from './picture.model';
 
 
 @Component({

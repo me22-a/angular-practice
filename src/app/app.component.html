@@ -1,10 +1,10 @@
-<main class="main">
-  <div>
-    <app-header />
-  </div>
-  <div class="content">
-    <app-gallery />
-  </div>
+@if (isClickedLogin) {
+<app-auth (close)="onCloseLogin()" />
+}
+
+<main>
+  <app-header />
+  <ng-template appAuth="user"> <app-gallery /></ng-template>
 </main>
 
 <router-outlet />

@@ -112,7 +112,7 @@ export class GalleryService {
     return this.gallerys;
   }
 
-  addPicture(pictureData: NewPictureData, id: string) {
+  addPicture(pictureData: NewPictureData) {
     this.gallerys.unshift({
       id: new Date().getTime().toString(),
       title: pictureData.title,

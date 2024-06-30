@@ -30,7 +30,7 @@ export class NewPictureComponent {
       desc: this.enteredDescription,
       imgurl: this.enteredImageUrl,
       date: this.enteredDate,
-    }, this.pictureId);
+    });
     this.close.emit();
   }
 }

@@ -1,7 +1,29 @@
-<nav  class="w-full px-4 md:px-8 py-4">
+<nav class="w-full px-4 md:px-8 py-4">
   <div class="w-full flex gap-3">
-    <button type="button" class="px-5 py-3.5 bg-white hover:bg-black rounded-full hover:text-white font-semibold">Home</button>
-    <button type="button" class="px-5 py-3.5 bg-white hover:bg-black rounded-full hover:text-white font-semibold" (click)="sharedService.onCreateButtonClick.next('')">Create</button>
-    <input type="text" placeholder="Search" class="w-full rounded-full px-5 bg-zinc-200 text-zinc-950">
+    <button
+      type="button"
+      class="px-5 py-3.5 bg-white hover:bg-black rounded-full hover:text-white font-semibold"
+    >
+      Home
+    </button>
+    <button
+      type="button"
+      class="px-5 py-3.5 bg-white hover:bg-black rounded-full hover:text-white font-semibold"
+      (click)="isUser() ? sharedService.onCreateButtonClick.next('') : sharedService.onLoginButtonClick.next('')"
+    >
+      Create
+    </button>
+    <input
+      type="text"
+      placeholder="Search"
+      class="w-full rounded-full px-5 bg-zinc-200 text-zinc-950"
+    />
+    <button
+      type="button"
+      class="px-5 py-3.5 bg-white hover:bg-black rounded-full hover:text-white font-semibold"
+      (click)="sharedService.onLoginButtonClick.next('')"
+    >
+      Login
+    </button>
   </div>
 </nav>

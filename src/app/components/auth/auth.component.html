@@ -1,0 +1,41 @@
+<div
+  class="fixed inset-0 z-50 flex items-center justify-center bg-zinc-800/60 backdrop-blur-lg"
+  (click)="onCancel()"
+></div>
+<dialog open class="z-50 p-6 top-[25%] bg-zinc-100 rounded-lg shadow-lg">
+  <form (ngSubmit)="onSummit()" class="space-y-4">
+    <p class="space-y-2">
+      <label for="email" class="block text-sm font-medium text-zinc-700"
+        >Email</label
+      >
+      <input
+        id="email"
+        type="email"
+        name="email"
+        [(ngModel)]="enteredEmail"
+        class="w-full p-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:border-zinc-500"
+      />
+    </p>
+    <p class="space-y-2">
+      <label for="password" class="block text-sm font-medium text-zinc-700"
+        >Password</label
+      >
+      <input
+        id="password"
+        type="password"
+        name="password"
+        [(ngModel)]="enteredPassword"
+        class="w-full p-2 border border-zinc-300 rounded-md focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:border-zinc-500"
+      />
+    </p>
+    <p>
+      <button
+        type="submit"
+        (click)="onSummit()"
+        class="w-full px-4 py-2 font-semibold text-white bg-zinc-600 rounded-md hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-zinc-500 focus:ring-offset-2"
+      >
+        Login
+      </button>
+    </p>
+  </form>
+</dialog>

@@ -1,17 +1,18 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { PictureComponent } from './picture/picture.component';
-import { type NewPictureData, Picture } from './picture/picture.model';
+import type { Picture } from './picture/picture.model';
 import { NewPictureComponent } from './new-picture/new-picture.component';
 import { SharedService } from '../shared.service';
 import { CommonModule } from '@angular/common';
 import { GalleryService } from './gallery.service';
+import { AuthComponent } from '../auth/auth.component';
 
 @Component({
   selector: 'app-gallery',
   standalone: true,
   templateUrl: './gallery.component.html',
   styleUrls: ['./gallery.component.css'],
-  imports: [CommonModule, PictureComponent, NewPictureComponent],
+  imports: [CommonModule, PictureComponent, NewPictureComponent, AuthComponent],
 })
 export class GalleryComponent implements OnInit {
   isAddingPicture = false;
